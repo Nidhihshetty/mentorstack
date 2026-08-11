@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "userId": 1,
+        "prompt": "Generate code snippet for Prisma schema relations",
+        "response": "Here’s an example code snippet with one-to-many relations...",
+        "timestamp": "2024-02-10T09:00:00.000Z",
+        "updatedAt": "2024-02-10T09:00:00.000Z"
+    },
+    {
+        "id": 2,
+        "userId": 2,
+        "prompt": "Summarize backend optimization strategies",
+        "response": "Use caching, indexes, and query profiling to improve performance...",
+        "timestamp": "2024-02-10T10:00:00.000Z",
+        "updatedAt": "2024-02-10T10:00:00.000Z"
+    },
+    {
+        "id": 3,
+        "userId": 3,
+        "prompt": "List popular Node.js libraries",
+        "response": "Express, Prisma, Socket.io, bcrypt, and more.",
+        "timestamp": "2024-02-10T11:00:00.000Z",
+        "updatedAt": "2024-02-10T11:00:00.000Z"
+    }
+]

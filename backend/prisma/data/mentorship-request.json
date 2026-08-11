@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "mentorUserId": 1,
+        "menteeUserId": 2,
+        "status": "accepted",
+        "requestMessage": "I'd love to get guidance on backend architecture.",
+        "createdAt": "2024-02-05T12:00:00.000Z",
+        "updatedAt": "2024-02-10T12:00:00.000Z"
+    },
+    {
+        "id": 2,
+        "mentorUserId": 3,
+        "menteeUserId": 4,
+        "status": "pending",
+        "requestMessage": "I'm looking for help with data preprocessing techniques.",
+        "createdAt": "2024-04-22T14:00:00.000Z",
+        "updatedAt": "2024-04-22T14:00:00.000Z"
+    }
+]

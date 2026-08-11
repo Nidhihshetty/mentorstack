@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "communityId": 1,
+        "userId": 1,
+        "userRole": "mentor",
+        "joinedAt": "2024-02-01T09:10:00.000Z",
+        "updatedAt": "2024-02-01T09:10:00.000Z"
+    },
+    {
+        "id": 2,
+        "communityId": 1,
+        "userId": 2,
+        "userRole": "mentee",
+        "joinedAt": "2024-02-01T09:15:00.000Z",
+        "updatedAt": "2024-02-01T09:15:00.000Z"
+    },
+    {
+        "id": 3,
+        "communityId": 2,
+        "userId": 3,
+        "userRole": "mentor",
+        "joinedAt": "2024-03-01T10:10:00.000Z",
+        "updatedAt": "2024-03-01T10:10:00.000Z"
+    },
+    {
+        "id": 4,
+        "communityId": 2,
+        "userId": 4,
+        "userRole": "mentee",
+        "joinedAt": "2024-03-01T10:15:00.000Z",
+        "updatedAt": "2024-03-01T10:15:00.000Z"
+    }
+]

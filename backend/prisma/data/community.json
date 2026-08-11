@@ -1,0 +1,28 @@
+[
+    {
+        "id": 1,
+        "name": "Node.js Enthusiasts",
+        "description": "A community for discussing Node.js and backend development.",
+        "skills": [
+            "Node.js",
+            "Express",
+            "Prisma"
+        ],
+        "createdById": 1,
+        "createdAt": "2024-02-01T09:00:00.000Z",
+        "updatedAt": "2024-02-01T09:00:00.000Z"
+    },
+    {
+        "id": 2,
+        "name": "Data Science Hub",
+        "description": "Sharing knowledge about data science, ML, and AI.",
+        "skills": [
+            "Python",
+            "TensorFlow",
+            "Pandas"
+        ],
+        "createdById": 3,
+        "createdAt": "2024-03-01T10:00:00.000Z",
+        "updatedAt": "2024-03-01T10:00:00.000Z"
+    }
+]

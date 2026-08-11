@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Helpful Mentor",
+        "description": "Awarded for providing useful mentorship and guidance.",
+        "reputationThreshold": 50,
+        "createdAt": "2024-01-01T09:00:00.000Z",
+        "updatedAt": "2024-01-01T09:00:00.000Z"
+    },
+    {
+        "id": 2,
+        "name": "Active Contributor",
+        "description": "Awarded for frequent contributions to questions, answers, and articles.",
+        "reputationThreshold": 30,
+        "createdAt": "2024-01-01T09:30:00.000Z",
+        "updatedAt": "2024-01-01T09:30:00.000Z"
+    },
+    {
+        "id": 3,
+        "name": "Community Builder",
+        "description": "Awarded for creating communities and engaging members.",
+        "reputationThreshold": 40,
+        "createdAt": "2024-01-01T10:00:00.000Z",
+        "updatedAt": "2024-01-01T10:00:00.000Z"
+    }
+]

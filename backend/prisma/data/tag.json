@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "name": "Node.js",
+        "description": "Questions and articles related to Node.js",
+        "createdAt": "2024-01-01T09:00:00.000Z",
+        "updatedAt": "2024-01-01T09:00:00.000Z"
+    },
+    {
+        "id": 2,
+        "name": "Prisma",
+        "description": "Questions and articles related to Prisma ORM",
+        "createdAt": "2024-01-01T09:10:00.000Z",
+        "updatedAt": "2024-01-01T09:10:00.000Z"
+    },
+    {
+        "id": 3,
+        "name": "React",
+        "description": "Questions and articles about React framework",
+        "createdAt": "2024-01-01T09:20:00.000Z",
+        "updatedAt": "2024-01-01T09:20:00.000Z"
+    },
+    {
+        "id": 4,
+        "name": "TailwindCSS",
+        "description": "Questions and articles about TailwindCSS styling",
+        "createdAt": "2024-01-01T09:30:00.000Z",
+        "updatedAt": "2024-01-01T09:30:00.000Z"
+    },
+    {
+        "id": 5,
+        "name": "Data Science",
+        "description": "Questions and articles about data science, ML, and AI",
+        "createdAt": "2024-01-01T09:40:00.000Z",
+        "updatedAt": "2024-01-01T09:40:00.000Z"
+    }
+]

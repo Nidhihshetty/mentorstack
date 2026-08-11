@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "authorId": 1,
+        "authorRole": "mentor",
+        "title": "Prisma Best Practices for Node.js",
+        "content": "Organizing your Prisma models and services properly is crucial for maintainable code.",
+        "imageUrls": [
+            "https://picsum.photos/200/300?random=1"
+        ],
+        "upvotes": 5,
+        "downvotes": 0,
+        "createdAt": "2024-02-15T10:00:00.000Z",
+        "updatedAt": "2024-02-15T10:00:00.000Z"
+    },
+    {
+        "id": 2,
+        "authorId": 3,
+        "authorRole": "mentor",
+        "title": "Introduction to Data Science Pipelines",
+        "content": "A beginner-friendly guide on setting up ETL pipelines using Python and Pandas.",
+        "imageUrls": [
+            "https://picsum.photos/200/300?random=2"
+        ],
+        "upvotes": 3,
+        "downvotes": 0,
+        "createdAt": "2024-03-15T09:00:00.000Z",
+        "updatedAt": "2024-03-15T09:00:00.000Z"
+    },
+    {
+        "id": 3,
+        "authorId": 1,
+        "authorRole": "mentor",
+        "title": "Optimizing Backend Performance",
+        "content": "Tips on caching, indexing, and profiling queries for faster response times.",
+        "imageUrls": [
+            "https://picsum.photos/200/300?random=3"
+        ],
+        "upvotes": 4,
+        "downvotes": 1,
+        "createdAt": "2024-01-25T08:30:00.000Z",
+        "updatedAt": "2024-01-25T08:30:00.000Z"
+    }
+]

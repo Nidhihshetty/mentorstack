@@ -1,0 +1,434 @@
+// ---------- Generator & Datasource ----------
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- ENUMs ----------
+enum Role {
+  mentor
+  mentee
+  admin
+}
+
+enum VoteType {
+  upvote
+  downvote
+}
+
+enum MentorshipStatus {
+  pending
+  accepted
+  rejected
+}
+
+// ---------- Core User ----------
+model User {
+  id                     Int                     @id @default(autoincrement())
+  email                  String                  @unique
+  password               String
+  passwordResetToken     String?
+  passwordResetExpiresAt DateTime?
+  role                   Role
+  name                   String
+  jobTitle               String?
+  department             String?
+  bio                    String?
+  avatarUrl              String?
+  skills                 String[] // Postgres arrays (Neon OK)
+  location               String?
+  reputation             Int                     @default(0)
+  createdAt              DateTime                @default(now())
+  updatedAt              DateTime                @updatedAt
+  // Optional role-specific profiles (1:1 by shared PK)
+  // Auth & activity relations
+  // QnA & Articles
+  questions              Question[]              @relation("UserQuestions")
+  answers                Answer[]                @relation("UserAnswers")
+  articles               Article[]               @relation("UserArticles")
+  questionBookmarks      QuestionBookmark[] // <-- MODIFIED
+  articleBookmarks       ArticleBookmark[] // <-- MODIFIED
+  communityPostBookmarks CommunityPostBookmark[] // <-- MODIFIED
+  aiLogs                 AiLog[]
+  // Community
+  createdCommunities     Community[]             @relation("CommunityCreator")
+  communityMemberships   CommunityMember[]
+  communityPosts         CommunityPost[]         @relation("PostAuthor")
+  communityPostVotes     CommunityPostVote[]
+  communityMessages      CommunityMessage[]
+  // Votes
+  articleVotes           ArticleVote[]
+  // Chat
+  sentMessages           Message[]               @relation("MessageSender")
+  // Connections (as mentor or mentee)
+  mentorConnections      Connection[]            @relation("MentorUser")
+  menteeConnections      Connection[]            @relation("MenteeUser")
+  // Mentorship requests (as mentor or mentee)
+  mentorRequests         MentorshipRequest[]     @relation("MentorUserRequests")
+  menteeRequests         MentorshipRequest[]     @relation("MenteeUserRequests")
+  // Badges & Reputation
+  userBadges             UserBadge[]
+  reputationHistory      ReputationHistory[]
+  AnswerVote             AnswerVote[]
+
+  @@index([passwordResetToken])
+}
+
+// ---------- Mentorship ----------
+model MentorshipRequest {
+  id             Int              @id @default(autoincrement())
+  mentorUserId   Int
+  menteeUserId   Int
+  status         MentorshipStatus @default(pending)
+  requestMessage String?
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  mentor         User             @relation("MentorUserRequests", fields: [mentorUserId], references: [id], onDelete: Cascade)
+  mentee         User             @relation("MenteeUserRequests", fields: [menteeUserId], references: [id], onDelete: Cascade)
+
+  @@unique([mentorUserId, menteeUserId])
+}
+
+model Connection {
+  id           Int           @id @default(autoincrement())
+  mentorUserId Int
+  menteeUserId Int
+  acceptedAt   DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  mentor       User          @relation("MentorUser", fields: [mentorUserId], references: [id], onDelete: Cascade)
+  mentee       User          @relation("MenteeUser", fields: [menteeUserId], references: [id], onDelete: Cascade)
+  conversation Conversation?
+
+  @@unique([mentorUserId, menteeUserId])
+}
+
+// ---------- Chat ----------
+model Conversation {
+  id           Int        @id @default(autoincrement())
+  connectionId Int        @unique
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  messages     Message[]
+  connection   Connection @relation(fields: [connectionId], references: [id], onDelete: Cascade)
+}
+
+model Message {
+  id             Int          @id @default(autoincrement())
+  conversationId Int
+  senderId       Int
+  message        String
+  isRead         Boolean      @default(false)
+  timestamp      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender         User         @relation("MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId])
+  @@index([senderId])
+}
+
+// Community discussions chat message persistence
+model CommunityMessage {
+  id          Int       @id @default(autoincrement())
+  communityId Int
+  senderId    Int
+  content     String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  community   Community @relation(fields: [communityId], references: [id], onDelete: Cascade)
+  sender      User      @relation(fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([communityId, createdAt])
+  @@index([senderId])
+}
+
+// ---------- QnA ----------
+model Question {
+  id         Int                @id @default(autoincrement())
+  authorId   Int
+  authorRole Role // you asked to keep role on these records
+  title      String
+  body       String
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
+  author     User               @relation("UserQuestions", fields: [authorId], references: [id], onDelete: Cascade)
+  answers    Answer[]
+  tags       QuestionTag[]
+  bookmarks  QuestionBookmark[] // <-- MODIFIED
+
+  @@index([authorId])
+}
+
+model Answer {
+  id         Int          @id @default(autoincrement())
+  questionId Int
+  authorId   Int
+  authorRole Role // you asked to keep role on these records
+  body       String
+  upvotes    Int          @default(0)
+  downvotes  Int          @default(0)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  question   Question     @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  author     User         @relation("UserAnswers", fields: [authorId], references: [id], onDelete: Cascade)
+  AnswerVote AnswerVote[]
+
+  @@index([questionId])
+  @@index([authorId])
+}
+
+model AnswerVote {
+  id        Int      @id @default(autoincrement())
+  voterId   Int
+  answerId  Int
+  voteType  VoteType
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  voter     User     @relation(fields: [voterId], references: [id], onDelete: Cascade)
+  answer    Answer   @relation(fields: [answerId], references: [id], onDelete: Cascade)
+
+  @@unique([voterId, answerId])
+  @@index([answerId])
+}
+
+// ---------- Articles ----------
+model Article {
+  id         Int               @id @default(autoincrement())
+  authorId   Int
+  authorRole Role // you asked to keep role on these records
+  title      String
+  content    String
+  imageUrls  String[]
+  upvotes    Int               @default(0)
+  downvotes  Int               @default(0)
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
+  author     User              @relation("UserArticles", fields: [authorId], references: [id], onDelete: Cascade)
+  votes      ArticleVote[]
+  tags       ArticleTag[]
+  bookmarks  ArticleBookmark[] // <-- MODIFIED
+
+  @@index([authorId])
+}
+
+model ArticleVote {
+  id        Int      @id @default(autoincrement())
+  voterId   Int
+  articleId Int
+  voteType  VoteType
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  voter     User     @relation(fields: [voterId], references: [id], onDelete: Cascade)
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@unique([voterId, articleId])
+  @@index([articleId])
+}
+
+// ---------- Communities ----------
+model Community {
+  id          Int               @id @default(autoincrement())
+  name        String            @unique
+  description String?
+  skills      String[]
+  createdById Int // link to User
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  createdBy   User              @relation("CommunityCreator", fields: [createdById], references: [id], onDelete: Cascade)
+  members     CommunityMember[]
+  posts       CommunityPost[]
+  messages    CommunityMessage[]
+
+  @@index([createdById])
+}
+
+model CommunityMember {
+  id          Int       @id @default(autoincrement())
+  communityId Int
+  userId      Int
+  userRole    Role // keep role on record for fast filtering if you like
+  joinedAt    DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  community   Community @relation(fields: [communityId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([communityId, userId]) // role not needed for uniqueness anymore
+  @@index([userId])
+}
+
+model CommunityPost {
+  id          Int                     @id @default(autoincrement())
+  communityId Int
+  authorId    Int
+  authorRole  Role // keep role here as requested
+  title       String
+  content     String
+  imageUrls   String[]
+  upvotes     Int                     @default(0)
+  downvotes   Int                     @default(0)
+  createdAt   DateTime                @default(now())
+  updatedAt   DateTime                @updatedAt
+  community   Community               @relation(fields: [communityId], references: [id], onDelete: Cascade)
+  author      User                    @relation("PostAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  votes       CommunityPostVote[]
+  tags        CommunityPostTag[]
+  bookmarks   CommunityPostBookmark[] // <-- MODIFIED
+
+  @@index([communityId])
+  @@index([authorId])
+}
+
+model CommunityPostVote {
+  id        Int           @id @default(autoincrement())
+  userId    Int
+  postId    Int
+  voteType  VoteType
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post      CommunityPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, postId])
+  @@index([postId])
+}
+
+// ---------- Badges & Reputation ----------
+model Badge {
+  id                  Int         @id @default(autoincrement())
+  name                String      @unique
+  description         String
+  imageUrl            String? // Badge icon/image URL (SVG or PNG)
+  reputationThreshold Int // Minimum reputation required to earn this badge
+  isActive            Boolean     @default(true) // Allow disabling badges without deletion
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
+  userBadges          UserBadge[]
+}
+
+model UserBadge {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  badgeId     Int
+  awardedAt   DateTime @default(now())
+  isDisplayed Boolean  @default(true) // Allow users to hide certain badges from their profile
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  badge       Badge    @relation(fields: [badgeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, badgeId])
+  @@index([badgeId])
+  @@index([userId, awardedAt]) // Efficient queries for user's badges timeline
+}
+
+model ReputationHistory {
+  id            Int      @id @default(autoincrement())
+  userId        Int
+  points        Int // Reputation points gained or lost (can be positive or negative)
+  action        String // Action that triggered reputation change: "question_posted", "answer_accepted", "upvote_received", etc.
+  entityType    String? // Type of entity involved: "question", "answer", "article", "community_post"
+  entityId      Int? // ID of the related entity (question, answer, article, etc.)
+  description   String? // Optional human-readable description
+  createdAt     DateTime @default(now())
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([userId, createdAt]) // Efficient queries for user reputation timeline
+}
+
+// ---------- AI Logs ----------
+model AiLog {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  prompt    String
+  response  String
+  timestamp DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+// ---------- Bookmarks (Separate Tables Approach) ----------
+model QuestionBookmark {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  questionId Int
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, questionId])
+  @@index([questionId])
+}
+
+model ArticleBookmark {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  articleId Int
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, articleId])
+  @@index([articleId])
+}
+
+model CommunityPostBookmark {
+  id              Int           @id @default(autoincrement())
+  userId          Int
+  communityPostId Int
+  createdAt       DateTime      @default(now())
+  user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  communityPost   CommunityPost @relation(fields: [communityPostId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, communityPostId])
+  @@index([communityPostId])
+}
+
+// ---------- Tags ----------
+model Tag {
+  id             Int                @id @default(autoincrement())
+  name           String             @unique
+  description    String?
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+  questions      QuestionTag[]
+  articles       ArticleTag[]
+  communityPosts CommunityPostTag[]
+}
+
+model QuestionTag {
+  id         Int      @id @default(autoincrement())
+  questionId Int
+  tagId      Int
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  tag        Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([questionId, tagId])
+  @@index([tagId])
+}
+
+model ArticleTag {
+  id        Int     @id @default(autoincrement())
+  articleId Int
+  tagId     Int
+  article   Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([articleId, tagId])
+  @@index([tagId])
+}
+
+model CommunityPostTag {
+  id     Int           @id @default(autoincrement())
+  postId Int
+  tagId  Int
+  post   CommunityPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tag    Tag           @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, tagId])
+  @@index([tagId])
+}

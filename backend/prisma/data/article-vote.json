@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "voterId": 2,
+        "articleId": 1,
+        "voteType": "upvote",
+        "createdAt": "2024-02-15T11:00:00.000Z",
+        "updatedAt": "2024-02-15T11:00:00.000Z"
+    },
+    {
+        "id": 2,
+        "voterId": 4,
+        "articleId": 2,
+        "voteType": "upvote",
+        "createdAt": "2024-03-15T10:00:00.000Z",
+        "updatedAt": "2024-03-15T10:00:00.000Z"
+    },
+    {
+        "id": 3,
+        "voterId": 2,
+        "articleId": 3,
+        "voteType": "upvote",
+        "createdAt": "2024-01-25T09:00:00.000Z",
+        "updatedAt": "2024-01-25T09:00:00.000Z"
+    }
+]

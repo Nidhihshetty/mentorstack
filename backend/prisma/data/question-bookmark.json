@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "userId": 2,
+        "questionId": 1,
+        "createdAt": "2024-02-02T09:30:00.000Z"
+    },
+    {
+        "id": 2,
+        "userId": 4,
+        "questionId": 2,
+        "createdAt": "2024-04-22T15:00:00.000Z"
+    },
+    {
+        "id": 3,
+        "userId": 2,
+        "questionId": 3,
+        "createdAt": "2024-01-21T10:00:00.000Z"
+    }
+]

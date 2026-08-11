@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "communityId": 1,
+        "authorId": 1,
+        "authorRole": "mentor",
+        "title": "Best practices for Node.js project structure",
+        "content": "Here’s a guide on structuring your Node.js projects with Prisma and Express.",
+        "imageUrls": [
+            "https://picsum.photos/200/300?random=4"
+        ],
+        "upvotes": 3,
+        "downvotes": 0,
+        "createdAt": "2024-02-02T10:00:00.000Z",
+        "updatedAt": "2024-02-02T10:00:00.000Z"
+    },
+    {
+        "id": 2,
+        "communityId": 2,
+        "authorId": 3,
+        "authorRole": "mentor",
+        "title": "ML preprocessing tips",
+        "content": "Data preprocessing is key for ML pipelines. Here’s how to start.",
+        "imageUrls": [
+            "https://picsum.photos/200/300?random=5"
+        ],
+        "upvotes": 4,
+        "downvotes": 1,
+        "createdAt": "2024-03-02T11:00:00.000Z",
+        "updatedAt": "2024-03-02T11:00:00.000Z"
+    }
+]

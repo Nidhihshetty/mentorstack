@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "questionId": 1,
+        "authorId": 1,
+        "authorRole": "mentor",
+        "body": "You should organize your models in separate files, use services for business logic, and keep Prisma client initialization in a single module.",
+        "upvotes": 3,
+        "downvotes": 0,
+        "createdAt": "2024-02-01T13:00:00.000Z",
+        "updatedAt": "2024-02-01T13:00:00.000Z"
+    },
+    {
+        "id": 2,
+        "questionId": 2,
+        "authorId": 3,
+        "authorRole": "mentor",
+        "body": "Start with small projects like a to-do app. Focus on components in React and utility classes in TailwindCSS.",
+        "upvotes": 2,
+        "downvotes": 0,
+        "createdAt": "2024-04-21T11:00:00.000Z",
+        "updatedAt": "2024-04-21T11:00:00.000Z"
+    },
+    {
+        "id": 3,
+        "questionId": 3,
+        "authorId": 3,
+        "authorRole": "mentor",
+        "body": "Avoid unnecessary database calls, cache results where possible, and profile queries regularly.",
+        "upvotes": 5,
+        "downvotes": 0,
+        "createdAt": "2024-01-20T10:00:00.000Z",
+        "updatedAt": "2024-01-20T10:00:00.000Z"
+    }
+]

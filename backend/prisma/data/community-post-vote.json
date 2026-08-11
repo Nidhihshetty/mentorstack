@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "userId": 2,
+        "postId": 1,
+        "voteType": "upvote",
+        "createdAt": "2024-02-02T11:00:00.000Z",
+        "updatedAt": "2024-02-02T11:00:00.000Z"
+    },
+    {
+        "id": 2,
+        "userId": 4,
+        "postId": 2,
+        "voteType": "upvote",
+        "createdAt": "2024-03-02T12:00:00.000Z",
+        "updatedAt": "2024-03-02T12:00:00.000Z"
+    }
+]

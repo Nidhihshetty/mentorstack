@@ -1,0 +1,3 @@
+// Derive WS base from API base
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+export const WS_BASE_URL = API_BASE.replace('http', 'ws');

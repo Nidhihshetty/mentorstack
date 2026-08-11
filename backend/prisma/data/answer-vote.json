@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "voterId": 2,
+        "answerId": 1,
+        "voteType": "upvote",
+        "createdAt": "2024-02-01T14:00:00.000Z",
+        "updatedAt": "2024-02-01T14:00:00.000Z"
+    },
+    {
+        "id": 2,
+        "voterId": 4,
+        "answerId": 2,
+        "voteType": "upvote",
+        "createdAt": "2024-04-21T12:00:00.000Z",
+        "updatedAt": "2024-04-21T12:00:00.000Z"
+    },
+    {
+        "id": 3,
+        "voterId": 2,
+        "answerId": 3,
+        "voteType": "upvote",
+        "createdAt": "2024-01-20T11:00:00.000Z",
+        "updatedAt": "2024-01-20T11:00:00.000Z"
+    }
+]

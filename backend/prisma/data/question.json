@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "authorId": 2,
+        "authorRole": "mentee",
+        "title": "How to structure a Node.js project with Prisma?",
+        "body": "I’m trying to organize my backend project and want best practices for using Prisma with Node.js. Any suggestions?",
+        "createdAt": "2024-02-01T12:30:00.000Z",
+        "updatedAt": "2024-02-01T12:30:00.000Z"
+    },
+    {
+        "id": 2,
+        "authorId": 4,
+        "authorRole": "mentee",
+        "title": "Best approach for learning React + TailwindCSS?",
+        "body": "I am a beginner in React and TailwindCSS. How should I start building real projects?",
+        "createdAt": "2024-04-21T10:00:00.000Z",
+        "updatedAt": "2024-04-21T10:00:00.000Z"
+    },
+    {
+        "id": 3,
+        "authorId": 1,
+        "authorRole": "mentor",
+        "title": "Tips for backend code optimization?",
+        "body": "I want to share some best practices for writing efficient backend code. What are some common pitfalls to avoid?",
+        "createdAt": "2024-01-20T09:00:00.000Z",
+        "updatedAt": "2024-01-20T09:00:00.000Z"
+    }
+]

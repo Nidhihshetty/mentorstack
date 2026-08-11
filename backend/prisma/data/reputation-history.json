@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "userId": 1,
+        "change": 10,
+        "reason": "Upvote on Answer",
+        "createdAt": "2024-02-01T12:00:00.000Z",
+        "updatedAt": "2024-02-01T12:00:00.000Z"
+    },
+    {
+        "id": 2,
+        "userId": 1,
+        "change": 20,
+        "reason": "Accepted as Mentor",
+        "createdAt": "2024-02-05T12:00:00.000Z",
+        "updatedAt": "2024-02-05T12:00:00.000Z"
+    },
+    {
+        "id": 3,
+        "userId": 3,
+        "change": 15,
+        "reason": "Upvote on Article",
+        "createdAt": "2024-03-01T13:00:00.000Z",
+        "updatedAt": "2024-03-01T13:00:00.000Z"
+    }
+]

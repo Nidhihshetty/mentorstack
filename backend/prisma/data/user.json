@@ -1,0 +1,99 @@
+[
+    {
+        "id": 1,
+        "email": "john.smith@email.com",
+        "password": "$2b$10$JH/8j0vC0iZhNEtkVfGBveMjt1Qh2Cg/du5DGXTxr2G0EoA6Lsxym",
+        "role": "mentor",
+        "name": "John Smith",
+        "jobTitle": "Senior Software Engineer",
+        "department": "Engineering",
+        "bio": "Passionate about mentoring and backend systems.",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/1.jpg",
+        "skills": [
+            "Node.js",
+            "Prisma",
+            "PostgreSQL"
+        ],
+        "location": "New York",
+        "reputation": 120,
+        "createdAt": "2024-01-15T10:00:00.000Z",
+        "updatedAt": "2024-01-15T10:00:00.000Z"
+    },
+    {
+        "id": 2,
+        "email": "jane.doe@email.com",
+        "password": "$2b$10$JH/8j0vC0iZhNEtkVfGBveMjt1Qh2Cg/du5DGXTxr2G0EoA6Lsxym",
+        "role": "mentee",
+        "name": "Jane Doe",
+        "jobTitle": "Frontend Developer",
+        "department": "Design",
+        "bio": "Learning UI/UX and web development.",
+        "avatarUrl": "https://randomuser.me/api/portraits/women/2.jpg",
+        "skills": [
+            "React",
+            "TailwindCSS"
+        ],
+        "location": "London",
+        "reputation": 45,
+        "createdAt": "2024-02-01T12:00:00.000Z",
+        "updatedAt": "2024-02-01T12:00:00.000Z"
+    },
+    {
+        "id": 3,
+        "email": "alex.tanaka@email.com",
+        "password": "$2b$10$JH/8j0vC0iZhNEtkVfGBveMjt1Qh2Cg/du5DGXTxr2G0EoA6Lsxym",
+        "role": "mentor",
+        "name": "Alex Tanaka",
+        "jobTitle": "Data Scientist",
+        "department": "AI Research",
+        "bio": "Exploring ML models and data pipelines.",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/3.jpg",
+        "skills": [
+            "Python",
+            "TensorFlow",
+            "Pandas"
+        ],
+        "location": "Tokyo",
+        "reputation": 95,
+        "createdAt": "2024-03-10T09:00:00.000Z",
+        "updatedAt": "2024-03-10T09:00:00.000Z"
+    },
+    {
+        "id": 4,
+        "email": "emma.wilson@email.com",
+        "password": "$2b$10$JH/8j0vC0iZhNEtkVfGBveMjt1Qh2Cg/du5DGXTxr2G0EoA6Lsxym",
+        "role": "mentee",
+        "name": "Emma Wilson",
+        "jobTitle": "Student",
+        "department": "Computer Science",
+        "bio": "Aspiring full-stack developer.",
+        "avatarUrl": "https://randomuser.me/api/portraits/women/4.jpg",
+        "skills": [
+            "JavaScript",
+            "Node.js"
+        ],
+        "location": "Toronto",
+        "reputation": 25,
+        "createdAt": "2024-04-20T11:00:00.000Z",
+        "updatedAt": "2024-04-20T11:00:00.000Z"
+    },
+    {
+        "id": 5,
+        "email": "admin@email.com",
+        "password": "$2b$10$JH/8j0vC0iZhNEtkVfGBveMjt1Qh2Cg/du5DGXTxr2G0EoA6Lsxym",
+        "role": "admin",
+        "name": "System Admin",
+        "jobTitle": "Platform Administrator",
+        "department": "Operations",
+        "bio": "Manages the overall mentor-mentee platform.",
+        "avatarUrl": "https://randomuser.me/api/portraits/men/5.jpg",
+        "skills": [
+            "DevOps",
+            "Security"
+        ],
+        "location": "San Francisco",
+        "reputation": 200,
+        "createdAt": "2024-01-01T08:00:00.000Z",
+        "updatedAt": "2024-01-01T08:00:00.000Z"
+    }
+]

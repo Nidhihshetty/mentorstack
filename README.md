@@ -1,4 +1,4 @@
-﻿# 🎓 MentorStack
+# 🎓 MentorStack
 
 **MentorStack** is a full-stack mentorship platform with a properly implemented backend that supports authentication, role-based access, content publishing, community discussions, real-time chat, AI-assisted utilities, reputation tracking, and admin analytics. The backend is not just a set of endpoints; it is a structured system built to handle data integrity, security, asynchronous processing, and operational visibility.
 
@@ -592,7 +592,10 @@ This project is licensed under the MIT License.
 
 ---
 
-## 👥 Team
+## 👥 Contributors & Team
+
+- **Nidhi Shetty** ([@Nidhihshetty](https://github.com/Nidhihshetty))
+- **Akshar Shetty** ([@akshar-2005](https://github.com/akshar-2005))
 
 **Major-Project-26 Team**
 - Full-stack development

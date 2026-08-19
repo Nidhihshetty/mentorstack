@@ -597,7 +597,7 @@ This project is licensed under the MIT License.
 - **Nidhi Shetty** ([@Nidhihshetty](https://github.com/Nidhihshetty))
 - **Akshar Shetty** ([@akshar-2005](https://github.com/akshar-2005))
 
-**Major-Project-26 Team**
+
 - Full-stack development
 - UI/UX design
 - Database architecture
@@ -605,4 +605,4 @@ This project is licensed under the MIT License.
 
 ---
 
-**Built with ❤️ by the MentorStack Team**
+
